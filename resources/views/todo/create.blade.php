@@ -13,6 +13,13 @@
 <body>
   <div class="container">
       <h1>Todoサイト</h1>
+      @if (Auth::check())
+      <p>ようこそ{{$user->name}}さん</p>
+      @else
+      <p>ログインしていません。</p>
+      <a href="/login">ログイン</a>
+      <a href="/register">新規登録</a>
+      @endif
       
       <h2>Todoリスト 新規投稿</h2>
 

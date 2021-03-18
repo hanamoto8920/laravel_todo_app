@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 // Todoモデルを使う
 use App\Models\Todo;
+// DBクラスの使用
 use DB;
+// Auth機能を使用
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -29,7 +32,8 @@ class TodoController extends Controller
      */
     public function create(Request $request)
     {
-        return view('todo/create');
+        $user = Auth::user();
+        return view('todo/create', ['user' => $user]);
     }
 
     /**
@@ -40,11 +44,12 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $todo = new Todo;
         $form = $request->all();
         unset($form['_token']);
         $todo->fill($form)->save();
-        return redirect('todo/index');
+        return redirect('todo/index', ['user' => $user]);
 
 
         // $todo->title = $request->title;
@@ -72,8 +77,9 @@ class TodoController extends Controller
      */
     public function edit(Request $request)
     {
+        $user = Auth::user();
         $todo = Todo::find($request->id);
-        return view('todo/edit', ['form' => $todo]);
+        return view('todo/edit', ['form' => $todo, 'user' => $user]);
     }
 
     /**
@@ -85,16 +91,16 @@ class TodoController extends Controller
      */
     public function update(Request $request)
     {
-        // $todo = Todo::find($request->id);
-        // $form = $request->all();
-        // unset($form['_token']);
-        // $todo->fill($form)->save();
-        // return redirect('/todo/index');
         $todo = Todo::find($request->id);
-        $todo->title = $request->title;
-        $todo->text = $request->text;
-        $todo->update();
-        return redirect('todo/index', ['form' => $todo]);
+        $form = $request->all();
+        unset($form['_token']);
+        $todo->fill($form)->save();
+        // return redirect('/todo/index');
+        // $todo = Todo::find($request->id);
+        // $todo->title = $request->title;
+        // $todo->text = $request->text;
+        // $todo->update();
+        return redirect('todo/index');
     }
 
     /**
@@ -105,10 +111,11 @@ class TodoController extends Controller
      */
     public function destroy(Request $request)
     {
+        $user = Auth::user();
         $todo = Todo::find($request->id);
-        return view('todo.destroy', ['form' => $todo]);
+        return view('todo.destroy', ['form' => $todo, 'user' => $user]);
     }
-    public function delete(Request $request) 
+    public function delete(Request $request)
     {
         $todo = Todo::find($request->id);
         $todo->delete();
