@@ -12,13 +12,20 @@
 </head>
 <body>
   <div class="container">
-    <h1>Todoサイト</h1>
-    <p>このサイトは、簡単なTodo投稿サイトです。<br>
-    下記のリンクから投稿サイトへ入ってみよう！</p>
-    <a href="/todo/index">投稿サイトへ！</a>
-    <footer>
-      <p>copyright 2021 hanamoto.</p>
-    </footer>
+      <h1>Todoサイト</h1>
+      
+      <h2>Todoリスト 新規投稿</h2>
+
+      <form action="/todo/create" method="post">
+        @csrf 
+        <input type="text" name="title">
+        <input type="text" name="text">
+        <input type="submit" value="投稿する" >
+      </form>
+      <a href="/home">トップへ</a>
+      <footer>
+        <p>copyright 2021 hanamoto.</p>
+      </footer>
   </div>
 </body>
 </html>
