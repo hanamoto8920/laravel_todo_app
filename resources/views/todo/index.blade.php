@@ -28,8 +28,8 @@
             <td>{{ $todo->id }}</td>
             <td>{{ $todo->title }}</td>
             <td>{{ $todo->text }}</td>
-            <td><a href="/todo/edit?id={{$todo->id}}">更新する</a></td>
-            <td><a href="/todo/destroy?id={{$todo->id}}">削除する</a></td>
+            <td><a href="/todo/edit/{{$todo->id}}"  class="btn btn-primary">更新する</a></td>
+            <td><a href="/todo/destroy?id={{$todo->id}}"  class="btn btn-primary">削除する</a></td>
           </tr>
         @endforeach
       </table>
