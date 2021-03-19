@@ -13,26 +13,15 @@
 <body>
   <div class="container">
       <h1>Todoサイト</h1>
-      @if (Auth::check())
-      <p>ようこそ{{$user->name}}さん</p>
-      @else
-      <p>ログインしていません。</p>
-      <a href="/login">ログイン</a>
-      <a href="/register">新規登録</a>
-      @endif
       
-      <h2>Todoリスト 削除ページ</h2>
-      <h4>タイトル</h4>
-      <p>{{ $form->title }}</p>
-      <h4>内容</h4>
-      <p>{{ $form->text }}</p>
+      <h2>Todoリスト 更新</h2>
 
-      <form action="/todo/destroy" method="post">
+      <form action="/todo/edit" method="post">
         @csrf 
         <input type="hidden" name="id" value="{{ $form->id }}">
-        <input type="hidden" name="title" value="{{ $form->title }}">
-        <input type="hidden" name="text" value="{{ $form->text }}">
-        <input type="submit" value="削除する"  class="btn btn-primary">
+        <input type="text" name="title" value="{{ $form->title }}">
+        <input type="text" name="text" value="{{ $form->text }}">
+        <input type="submit" value="更新" >
       </form>
       <a href="/home">トップへ</a>
       <footer>
