@@ -27,7 +27,7 @@ Route::get('home', [HomeController::class, 'top']);
 Route::get('/todo/index', [TodoController::class, 'index']);
 Route::get('/todo/create', [TodoController::class, 'create']);
 Route::post('/todo/create', [TodoController::class, 'store']);
-Route::get('/todo/edit', [TodoController::class, 'edit']);
+Route::get('/todo/edit/{id}', [TodoController::class, 'edit']);
 Route::post('/todo/edit', [TodoController::class, 'update']);
 Route::get('/todo/destroy', [TodoController::class, 'destroy']);
 Route::post('/todo/destroy', [TodoController::class, 'delete']);

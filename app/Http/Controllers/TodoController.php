@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+// TodoRequest機能を使用
+use App\Http\Requests\TodoRequest;
+
 use Illuminate\Http\Request;
 
 // Todoモデルを使う
@@ -42,7 +45,7 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         // $user = Auth::user();
         $todo = new Todo;
@@ -94,7 +97,7 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(TodoRequest $request)
     {
         $todo = Todo::find($request->id);
         $form = $request->all();

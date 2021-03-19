@@ -32,7 +32,7 @@
         <input type="hidden" name="id" value="{{ $form->id }}">
         <input type="hidden" name="title" value="{{ $form->title }}">
         <input type="hidden" name="text" value="{{ $form->text }}">
-        <input type="submit" value="削除する" oneclick="return confirm('削除しますか？');">
+        <input type="submit" value="削除する"  class="btn btn-primary">
       </form>
       <a href="/home">トップへ</a>
       <footer>
